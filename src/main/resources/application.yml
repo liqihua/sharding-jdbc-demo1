@@ -1,0 +1,32 @@
+server:
+  port: 8888
+
+sharding:
+  jdbc:
+    datasource:
+      names: db1_master,db1_slave1,db1_slave2
+      db1_master:
+        type: com.alibaba.druid.pool.DruidDataSource
+        ds_master.driver-class-name: com.mysql.cj.jdbc.Driver
+        url: jdbc:mysql://127.0.0.1:3306/shared_db1_master?useUnicode=true&characterEncoding=utf-8&serverTimezone=Hongkong
+        username: root
+        password: 123
+      db1_slave1:
+        type: com.alibaba.druid.pool.DruidDataSource
+        ds_master.driver-class-name: com.mysql.cj.jdbc.Driver
+        url: jdbc:mysql://127.0.0.1:3306/shared_db1_slave1?useUnicode=true&characterEncoding=utf-8&serverTimezone=Hongkong
+        username: root
+        password: 123
+      db1_slave2:
+        type: com.alibaba.druid.pool.DruidDataSource
+        ds_master.driver-class-name: com.mysql.cj.jdbc.Driver
+        url: jdbc:mysql://127.0.0.1:3306/shared_db1_slave2?useUnicode=true&characterEncoding=utf-8&serverTimezone=Hongkong
+        username: root
+        password: 123
+    config:
+      masterslave:
+        load-balance-algorithm-type: round_robin
+        name: demo1
+        master-data-source-name: db1_master
+        slave-data-source-names: db1_slave1,db1_slave2
+
