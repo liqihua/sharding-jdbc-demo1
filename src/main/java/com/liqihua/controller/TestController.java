@@ -17,15 +17,15 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/loginController")
-public class LoginController {
+@RequestMapping("/testController")
+public class TestController {
     @Resource
     private MasterSlaveDataSource dataSource;
     @Resource
     private SysUserDao userDao;
 
-    @RequestMapping("/login1")
-    public String login1(){
+    @RequestMapping("/test1")
+    public String test1(){
         String sql = "SELECT * FROM sys_user";
         try {
             Connection conn =dataSource.getConnection();
@@ -39,12 +39,12 @@ public class LoginController {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return "-- login1 --";
+        return "-- test1 --";
     }
 
 
-    @RequestMapping("/login2")
-    public String login2(){
+    @RequestMapping("/test2")
+    public String test2(){
         String id = "id-"+System.currentTimeMillis();
         String username = "un-"+System.currentTimeMillis();
         String password = "pw-"+System.currentTimeMillis();
@@ -63,16 +63,16 @@ public class LoginController {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return "-- login2 --";
+        return "-- test2 --";
     }
 
 
 
-    @RequestMapping("/login3")
+    @RequestMapping("/test3")
     public String login3(){
         List<Map<String,Object>> list = userDao.findListSQL("SELECT * FROM sys_user");
         System.out.println(list);
-        return "-- login3 --";
+        return "-- test3 --";
     }
 
 
